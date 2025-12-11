@@ -1,477 +1,489 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'Almar | Arroz, Brisa y Fuego</title>
-    
-    <!-- React y ReactDOM -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    
-    <!-- Babel -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <!-- Tailwind CSS -->
+    <title>Soul Beach Hotel | Dénia - Serenidad Costera</title>
+    <meta name="description" content="Hotel boutique en Dénia a 20m de la playa. Habitaciones de diseño y dúplex equipados. Relax, deporte y mediterráneo.">
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Fuentes Google -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'soul-sand': '#F5F0EB',
+                        'soul-blue': '#4A8C9C',
+                        'soul-dark': '#1F2937',
+                        'soul-wood': '#8B5E3C',
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* Variables y Estilos Globales */
-        :root {
-            --color-arena: #F5F2E9;
-            --color-petroleo: #003B49;
-            --color-terracota: #9C5436;
-            --color-oliva: #6B705C;
-        }
-
-        body {
-            background-color: var(--color-arena);
-            color: #2D3748;
-            font-family: 'Montserrat', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        h1, h2, h3, h4, .font-brand {
-            font-family: 'Cinzel Decorative', serif;
-        }
-
-        .fade-in {
-            animation: fadeIn 0.8s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .nav-link {
-            position: relative;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--color-terracota);
-            transition: width 0.3s;
-        }
-        .nav-link:hover::after {
-            width: 100%;
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('portadasoul.png');
+            background-size: cover;
+            background-position: center;
         }
     </style>
 </head>
-<body>
-    <div id="root"></div>
+<body class="font-sans text-gray-600 antialiased bg-white">
 
-    <script type="text/babel">
-        const { useState, useEffect } = React;
-
-        // --- ICONOS ---
-        const IconWrapper = ({ children, className }) => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-                {children}
-            </svg>
-        );
-
-        const MenuIcon = (props) => <IconWrapper {...props}><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></IconWrapper>;
-        const XIcon = (props) => <IconWrapper {...props}><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></IconWrapper>;
-        const FlameIcon = (props) => <IconWrapper {...props}><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.1.2-2.2.6-3.3a1 1 0 0 1 1.9.4z"/></IconWrapper>;
-        const FishIcon = (props) => <IconWrapper {...props}><path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.47-3.46 6-7 6s-6.06-2.53-7-6a3 3 0 0 1-6 0c0-3.46 2.54-6 6-6 1.46 0 2.5.54 4.5 2.5"/></IconWrapper>;
-        const ChefHatIcon = (props) => <IconWrapper {...props}><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/><line x1="6" y1="17" x2="18" y2="17"/></IconWrapper>;
-        const UtensilsIcon = (props) => <IconWrapper {...props}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></IconWrapper>;
-        const MapPinIcon = (props) => <IconWrapper {...props}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></IconWrapper>;
-        const PhoneIcon = (props) => <IconWrapper {...props}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></IconWrapper>;
-        const CalendarIcon = (props) => <IconWrapper {...props}><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></IconWrapper>;
-        const WavesIcon = (props) => <IconWrapper {...props}><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></IconWrapper>;
-        const InstagramIcon = (props) => <IconWrapper {...props}><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></IconWrapper>;
-        const FacebookIcon = (props) => <IconWrapper {...props}><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></IconWrapper>;
-
-        // --- COMPONENTES DE PÁGINA ---
-
-        const Hero = ({ setPage }) => (
-            <div className="relative h-screen flex items-center justify-center overflow-hidden fade-in">
-                <div className="absolute inset-0 bg-gray-900">
-                    <img 
-                        src="https://images.unsplash.com/photo-1534080564583-6be75777b70a?q=80&w=2070&auto=format&fit=crop" 
-                        alt="Costa Valenciana" 
-                        className="w-full h-full object-cover opacity-60"
-                    />
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-serif text-2xl font-bold text-soul-dark tracking-wider">
+                        SOUL BEACH <span class="text-soul-blue text-lg block font-sans font-light -mt-1 tracking-widest">HOTEL</span>
+                    </a>
                 </div>
-                
-                <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-                    <div className="flex justify-center mb-6 text-[#F5F2E9]">
-                        <div className="w-16 h-16 md:w-24 md:h-24">
-                            <WavesIcon className="w-full h-full" />
-                        </div>
-                    </div>
-                    <h1 className="text-5xl md:text-7xl font-bold text-[#F5F2E9] mb-4 tracking-wider drop-shadow-lg">
-                        L'ALMAR
-                    </h1>
-                    <p className="text-xl md:text-2xl text-gray-200 mb-10 font-light tracking-widest uppercase">
-                        Arroz · Brisa · Fuego
-                    </p>
-                    <button 
-                        onClick={() => setPage('reservas')}
-                        className="bg-[#9C5436] text-[#F5F2E9] px-8 py-4 text-lg uppercase tracking-widest hover:bg-[#F5F2E9] hover:text-[#9C5436] transition-all duration-300 border border-transparent hover:border-[#9C5436]"
-                    >
-                        Reservar Mesa
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#inicio" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Inicio</a>
+                    <a href="#habitaciones" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Habitaciones</a>
+                    <a href="#experiencia" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Experiencia</a>
+                    <a href="#contacto" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Contacto</a>
+                    <a href="#reservar" onclick="openBooking()" class="bg-soul-blue text-white px-6 py-2 rounded-full hover:bg-cyan-700 transition duration-300 text-sm font-medium uppercase tracking-wide shadow-lg">
+                        Reservar
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-soul-blue focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
-        );
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#inicio" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue hover:bg-gray-50">Inicio</a>
+                <a href="#habitaciones" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue hover:bg-gray-50">Habitaciones</a>
+                <a href="#experiencia" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue hover:bg-gray-50">Experiencia</a>
+                <a href="#contacto" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue hover:bg-gray-50">Contacto</a>
+                <a href="#reservar" onclick="openBooking()" class="block w-full text-center mt-4 px-5 py-3 bg-soul-blue text-white font-medium rounded-lg">Reservar Ahora</a>
+            </div>
+        </div>
+    </nav>
 
-        const AboutPreview = () => (
-            <section className="py-20 px-6 md:px-20 bg-[#F5F2E9] text-[#003B49]">
-                <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div className="space-y-6 fade-in">
-                        <h2 className="text-4xl font-brand text-[#9C5436]">Nuestra Esencia</h2>
-                        <p className="text-lg leading-relaxed font-light">
-                            L'Almar nace donde la huerta besa al mar. Somos defensores del <strong>Kilómetro Cero</strong> y la cocina honesta.
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-bg h-screen flex items-center justify-center text-center px-4 relative">
+        <div class="max-w-4xl mx-auto text-white z-10 animate-fade-in-up">
+            <span class="uppercase tracking-[0.3em] text-sm md:text-base mb-4 block text-gray-100">Playa de l'Almadrava, Dénia</span>
+            <h1 class="font-serif text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                El Alma del <br/>Mediterráneo
+            </h1>
+            <p class="text-lg md:text-xl mb-10 text-gray-100 font-light max-w-2xl mx-auto">
+                Donde el confort contemporáneo se encuentra con la serenidad costera. A solo 20 metros del mar.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#habitaciones" class="bg-white text-soul-dark px-8 py-3 rounded-none hover:bg-gray-100 transition duration-300 uppercase tracking-widest text-sm font-semibold">
+                    Ver Habitaciones
+                </a>
+                <a href="#reservar" onclick="openBooking()" class="border border-white text-white px-8 py-3 rounded-none hover:bg-white/10 transition duration-300 uppercase tracking-widest text-sm font-semibold">
+                    Reservar Estancia
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/70">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Concept Section -->
+    <section class="py-20 bg-soul-sand/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="absolute -top-4 -left-4 w-20 h-20 bg-soul-blue/10 rounded-full z-0"></div>
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Interior Relax" class="relative z-10 rounded-lg shadow-xl w-full object-cover h-[500px]">
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 shadow-lg rounded-lg max-w-xs hidden md:block z-20">
+                        <p class="font-serif italic text-gray-500 text-lg">"Un espacio diseñado para no tener que salir si no quieres."</p>
+                    </div>
+                </div>
+                <div>
+                    <span class="text-soul-blue font-bold tracking-widest uppercase text-sm">Nuestra Filosofía</span>
+                    <h2 class="font-serif text-4xl font-bold text-soul-dark mt-2 mb-6">Relax, Diseño y Sostenibilidad</h2>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Soul Beach Hotel nace de la idea de fusionar el lujo discreto con la naturaleza. Nuestras instalaciones, recientemente renovadas, ofrecen una paleta de colores blancos y maderas que maximizan la luz natural de Dénia.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-8">
+                        Ya sea para una escapada romántica o unas vacaciones familiares en nuestros exclusivos Dúplex, aquí encontrarás el equilibrio perfecto entre privacidad y servicio.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-leaf text-soul-blue w-8"></i>
+                            <span>Compromiso con la sostenibilidad</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-umbrella-beach text-soul-blue w-8"></i>
+                            <span>A 20 metros de la Playa de l'Almadrava</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-wifi text-soul-blue w-8"></i>
+                            <span>WiFi de alta velocidad gratuito</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section id="habitaciones" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-soul-blue font-bold tracking-widest uppercase text-sm">Alojamiento</span>
+                <h2 class="font-serif text-4xl font-bold text-soul-dark mt-2">Tu Refugio Privado</h2>
+                <p class="mt-4 text-gray-500 max-w-2xl mx-auto">Espacios luminosos, suelos de madera y diseño contemporáneo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Habitación Doble -->
+                <div class="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
+                    <div class="relative h-64 overflow-hidden">
+                        <!-- Placeholder for User Image 1 -->
+                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Habitación Doble" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-soul-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                            Parejas
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-serif text-2xl font-bold text-soul-dark mb-2">Habitación Doble</h3>
+                        <p class="text-sm text-gray-500 mb-4">25 m² • Vista Jardín/Mar</p>
+                        <p class="text-gray-600 mb-6 line-clamp-3">
+                            Intimidad y luz. Elige entre cama King Size (2m) o dos camas individuales. Ideal para desconectar con su gran ventanal y diseño minimalista.
                         </p>
-                        <p className="text-lg leading-relaxed font-light">
-                            No hay secretos, solo producto: gamba de Dénia, arroz de la Albufera y verduras cultivadas por nuestros vecinos. Todo cocinado al fuego vivo de leña de naranjo, que aporta ese aroma inconfundible de nuestra tierra.
+                        <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> Terraza Privada</li>
+                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> Minibar y Cafetera</li>
+                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> TV Pantalla Plana</li>
+                        </ul>
+                        <button onclick="openBooking('Doble')" class="w-full border border-soul-dark text-soul-dark py-3 hover:bg-soul-dark hover:text-white transition duration-300 uppercase text-xs font-bold tracking-widest">
+                            Ver Disponibilidad
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dúplex -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-soul-blue overflow-hidden relative transform md:-translate-y-4">
+                    <div class="absolute top-0 left-0 w-full bg-soul-blue text-white text-center text-xs font-bold uppercase py-1 tracking-widest">
+                        Más Popular
+                    </div>
+                    <div class="relative h-64 overflow-hidden mt-6">
+                        <!-- Placeholder for User Image 3 (Kitchen/Living) -->
+                        <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dúplex Familiar" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-soul-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                            Familiar / 4 Pax
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-serif text-2xl font-bold text-soul-dark mb-2">Grand Dúplex</h3>
+                        <p class="text-sm text-gray-500 mb-4">70 m² • 2 Habitaciones • Cocina</p>
+                        <p class="text-gray-600 mb-6">
+                            La joya de Soul Beach. Siéntete como en casa con cocina completa, salón comedor, dos baños y terraza. Perfecto para familias o estancias largas.
                         </p>
-                        <div className="flex space-x-8 pt-4 justify-center md:justify-start">
-                            <div className="text-center">
-                                <div className="text-[#9C5436] mb-2 flex justify-center"><FlameIcon /></div>
-                                <span className="text-sm uppercase tracking-widest">Leña Naranjo</span>
+                        <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> Cocina Equipada</li>
+                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> Zona de Estar amplia</li>
+                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> Microondas y Menaje</li>
+                        </ul>
+                        <button onclick="openBooking('Duplex')" class="w-full bg-soul-blue text-white py-3 hover:bg-cyan-700 transition duration-300 uppercase text-xs font-bold tracking-widest shadow-md">
+                            Reservar Dúplex
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Individual -->
+                <div class="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
+                    <div class="relative h-64 overflow-hidden">
+                         <!-- Placeholder Generic -->
+                        <img src="https://images.unsplash.com/photo-1616486029423-aaa478965c96?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Habitación Individual" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-soul-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                            Solo Traveler
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-serif text-2xl font-bold text-soul-dark mb-2">Doble Uso Individual</h3>
+                        <p class="text-sm text-gray-500 mb-4">25 m² • Confort Total</p>
+                        <p class="text-gray-600 mb-6 line-clamp-3">
+                            El mismo diseño y lujo de nuestras habitaciones dobles, pensado exclusivamente para ti. Escritorio de trabajo y tranquilidad absoluta.
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> WiFi Alta Velocidad</li>
+                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> Cama King Size</li>
+                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> Parking Disponible</li>
+                        </ul>
+                        <button onclick="openBooking('Individual')" class="w-full border border-soul-dark text-soul-dark py-3 hover:bg-soul-dark hover:text-white transition duration-300 uppercase text-xs font-bold tracking-widest">
+                            Ver Disponibilidad
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience/Amenities Section -->
+    <section id="experiencia" class="py-20 bg-soul-dark text-white relative overflow-hidden">
+        <!-- Background decorative pattern -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style="background-image: radial-gradient(#4A8C9C 1px, transparent 1px); background-size: 20px 20px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+                <div>
+                    <span class="text-soul-blue font-bold tracking-widest uppercase text-sm">Experiencias MC</span>
+                    <h2 class="font-serif text-4xl font-bold mt-2 mb-6">Más que un Hotel</h2>
+                    <p class="text-gray-300 leading-relaxed text-lg">
+                        En Soul Beach Hotel, tus vacaciones van más allá de la habitación. Aprovecha nuestra ubicación privilegiada para explorar la costa de Dénia o relájate en nuestra terraza chill-out viendo el atardecer.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white/5 p-6 rounded-lg backdrop-blur-sm border border-white/10 hover:border-soul-blue/50 transition duration-300">
+                        <i class="fas fa-water text-3xl text-soul-blue mb-4"></i>
+                        <h4 class="font-bold mb-2">Deportes Acuáticos</h4>
+                        <p class="text-sm text-gray-400">Alquiler de Kayak y Paddle Surf disponibles para huéspedes.</p>
+                    </div>
+                    <div class="bg-white/5 p-6 rounded-lg backdrop-blur-sm border border-white/10 hover:border-soul-blue/50 transition duration-300">
+                        <i class="fas fa-bicycle text-3xl text-soul-blue mb-4"></i>
+                        <h4 class="font-bold mb-2">Bicicletas</h4>
+                        <p class="text-sm text-gray-400">Descubre Dénia sobre ruedas. Rutas y alquiler en recepción.</p>
+                    </div>
+                    <div class="bg-white/5 p-6 rounded-lg backdrop-blur-sm border border-white/10 hover:border-soul-blue/50 transition duration-300">
+                        <i class="fas fa-swimming-pool text-3xl text-soul-blue mb-4"></i>
+                        <h4 class="font-bold mb-2">Piscina & Chill Out</h4>
+                        <p class="text-sm text-gray-400">Zona de relax con solárium y ambiente tranquilo.</p>
+                    </div>
+                    <div class="bg-white/5 p-6 rounded-lg backdrop-blur-sm border border-white/10 hover:border-soul-blue/50 transition duration-300">
+                        <i class="fas fa-utensils text-3xl text-soul-blue mb-4"></i>
+                        <h4 class="font-bold mb-2">Gastronomía</h4>
+                        <p class="text-sm text-gray-400">Desayunos mediterráneos y opciones locales frescas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Strip -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-0">
+        <div class="h-64 overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Detalle Hotel" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+            <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-300"></div>
+        </div>
+        <div class="h-64 overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Detalle Habitación" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+             <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-300"></div>
+        </div>
+        <div class="h-64 overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1468413253740-8063aa1f209a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Playa Denia" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+             <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-300"></div>
+        </div>
+        <div class="h-64 overflow-hidden relative group">
+            <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Piscina" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+             <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-300"></div>
+        </div>
+    </section>
+
+    <!-- Location & Contact -->
+    <section id="contacto" class="py-20 bg-soul-sand">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row">
+                <div class="md:w-1/2 p-10 lg:p-14">
+                    <span class="text-soul-blue font-bold tracking-widest uppercase text-sm">Contacto</span>
+                    <h2 class="font-serif text-3xl font-bold text-soul-dark mt-2 mb-6">Te esperamos en Dénia</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 bg-soul-blue/10 p-3 rounded-full">
+                                <i class="fas fa-map-marker-alt text-soul-blue"></i>
                             </div>
-                            <div className="text-center">
-                                <div className="text-[#9C5436] mb-2 flex justify-center"><FishIcon /></div>
-                                <span className="text-sm uppercase tracking-widest">Lonja Diaria</span>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold text-gray-800">Dirección</h4>
+                                <p class="text-gray-600">Playa de l'Almadrava, Carrer 19, 12<br>03779 Dénia, Alicante</p>
                             </div>
-                            <div className="text-center">
-                                <div className="text-[#9C5436] mb-2 flex justify-center"><ChefHatIcon /></div>
-                                <span className="text-sm uppercase tracking-widest">Tradición</span>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 bg-soul-blue/10 p-3 rounded-full">
+                                <i class="fas fa-phone-alt text-soul-blue"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold text-gray-800">Teléfono</h4>
+                                <p class="text-gray-600">+34 966 889 290</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 bg-soul-blue/10 p-3 rounded-full">
+                                <i class="fas fa-envelope text-soul-blue"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold text-gray-800">Email</h4>
+                                <p class="text-gray-600">booking@mcalojamientos.com</p>
                             </div>
                         </div>
                     </div>
-                    <div className="h-96 rounded-lg overflow-hidden shadow-xl fade-in">
-                        {/* IMAGEN CAMBIADA: Paella normal en lugar de fuego */}
-                        <img 
-                            src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=2081&auto=format&fit=crop" 
-                            alt="Paella Valenciana" 
-                            className="w-full h-full object-cover"
-                        />
+
+                    <div class="mt-10">
+                         <a href="https://maps.google.com/?q=Soul+Beach+Hotel+Denia" target="_blank" class="inline-block text-soul-blue font-bold border-b-2 border-soul-blue pb-1 hover:text-soul-dark hover:border-soul-dark transition-colors">
+                            Ver cómo llegar <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
                 </div>
-            </section>
-        );
+                <div class="md:w-1/2 bg-gray-200 min-h-[400px]">
+                    <!-- Placeholder Map -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3110.156641662974!2d0.01912331535492211!3d38.86813297957448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x129e1adbd8b8b8b9%3A0x1c8b8b8b8b8b8b8b!2sCarrer%2019%2C%2012%2C%2003779%20D%C3%A9nia%2C%20Alicante!5e0!3m2!1ses!2ses!4v1625581234567!5m2!1ses!2ses" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        const MenuPage = () => {
-            const categories = [
-                {
-                    title: "La Picaeta",
-                    description: "Entrantes para compartir y abrir el alma",
-                    items: [
-                        { name: "Clóchinas al Vapor Cítrico", desc: "Mejillón valenciano, hoja de limonero y flor de sal", price: "14€" },
-                        { name: "Esgarraet 2.0", desc: "Pimiento a la leña, bacalao inglés, mojama y AOVE milenario", price: "16€" },
-                        { name: "Sepia 'Bruta'", desc: "Sepia de playa a la plancha con su melsa y alioli negro", price: "18€" },
-                        { name: "Tomate del Perelló", desc: "Con ventresca casera de atún y sal en escamas", price: "12€" }
-                    ]
-                },
-                {
-                    title: "Arroces a la Leña",
-                    description: "Mínimo 2 personas. Precio por ración. Hechos al sarmiento y naranjo.",
-                    items: [
-                        { name: "Paella Valenciana", desc: "La canónica: Pollo, conejo, garrofó, ferraura y caracoles", price: "18€" },
-                        { name: "Arroz del Senyoret L'Almar", desc: "Gamba roja de Dénia, rape y calamar. Todo pelado", price: "24€" },
-                        { name: "Meloso de Pato", desc: "Con boletus y foie. Intenso y cremoso", price: "22€" },
-                        { name: "Fideuà de Gandía", desc: "Fideo fino tostado, cigalas y fondo de roca", price: "20€" }
-                    ]
-                },
-                {
-                    title: "Dulce Final",
-                    description: "Postres caseros con el toque de la terreta",
-                    items: [
-                        { name: "Torrija de Horchata", desc: "Brioche empapado en chufa fresca y helado de canela", price: "8€" },
-                        { name: "Naranja en Texturas", desc: "Sorbete, sanguina fresca y piel confitada", price: "7€" },
-                        { name: "Coca de Llanda", desc: "Con chocolate caliente a la taza", price: "6€" }
-                    ]
-                }
-            ];
-
-            return (
-                <div className="pt-24 pb-20 px-4 md:px-20 bg-[#F5F2E9] min-h-screen fade-in">
-                    <div className="max-w-4xl mx-auto text-center mb-16">
-                        <div className="text-[#9C5436] mb-4 flex justify-center"><UtensilsIcon size={32} /></div>
-                        <h2 className="text-4xl md:text-5xl font-brand text-[#003B49] mb-4">Nuestra Carta</h2>
-                        <p className="text-gray-600 italic">Producto de temporada. Si no es fresco, no lo servimos.</p>
-                    </div>
-
-                    <div className="max-w-5xl mx-auto space-y-16">
-                        {categories.map((cat, idx) => (
-                            <div key={idx} className="bg-white p-8 md:p-12 shadow-sm rounded-sm border-t-4 border-[#9C5436]">
-                                <h3 className="text-3xl font-brand text-[#003B49] mb-2">{cat.title}</h3>
-                                <p className="text-[#6B705C] mb-8 font-light">{cat.description}</p>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-                                    {cat.items.map((item, itemIdx) => (
-                                        <div key={itemIdx} className="flex justify-between items-baseline border-b border-gray-100 pb-2">
-                                            <div className="pr-4">
-                                                <h4 className="text-xl font-medium text-gray-800">{item.name}</h4>
-                                                <p className="text-sm text-gray-500 mt-1">{item.desc}</p>
-                                            </div>
-                                            <span className="text-lg font-brand text-[#9C5436]">{item.price}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
+    <!-- Footer -->
+    <footer class="bg-soul-dark text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12 border-b border-gray-700 pb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <h3 class="font-serif text-2xl font-bold mb-4">SOUL BEACH</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Gestionado por MC Alojamientos.<br>
+                        Comprometidos con la calidad, la sostenibilidad y el confort de nuestros huéspedes.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-soul-blue uppercase tracking-wider text-xs">Explorar</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Inicio</a></li>
+                        <li><a href="#" class="hover:text-white transition">Habitaciones</a></li>
+                        <li><a href="#" class="hover:text-white transition">Ofertas</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-soul-blue uppercase tracking-wider text-xs">Legal</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Aviso Legal</a></li>
+                        <li><a href="#" class="hover:text-white transition">Política de Privacidad</a></li>
+                        <li><a href="#" class="hover:text-white transition">Política de Cookies</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-soul-blue uppercase tracking-wider text-xs">Síguenos</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-soul-blue transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-soul-blue transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-soul-blue transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
                     </div>
                 </div>
-            );
-        };
+            </div>
+            <div class="text-center text-gray-500 text-sm flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2025 Soul Beach Hotel. Todos los derechos reservados.</p>
+                <div class="mt-4 md:mt-0">
+                    <span class="text-xs border border-gray-600 rounded px-2 py-1">Alicante, España</span>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-        const GalleryPage = () => {
-            const images = [
-                { url: "https://images.unsplash.com/photo-1515443961218-a51367888e4b?q=80&w=2070&auto=format&fit=crop", title: "Nuestros Arroces" },
-                { url: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop", title: "Vistas al Mar" },
-                // IMAGEN CAMBIADA: Detalles ahora es una foto más cercana de texturas/comida
-                { url: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?q=80&w=1974&auto=format&fit=crop", title: "Detalles" },
-                { url: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop", title: "Ingredientes Frescos" },
-                { url: "https://images.unsplash.com/photo-1516684732162-798a0062be99?q=80&w=2592&auto=format&fit=crop", title: "Clóchinas" },
-                { url: "https://images.unsplash.com/photo-1543353071-873f17a7a088?q=80&w=2070&auto=format&fit=crop", title: "Espacio L'Almar" }
-            ];
-
-            return (
-                <div className="pt-24 pb-20 px-4 md:px-10 bg-[#F5F2E9] min-h-screen fade-in">
-                    <div className="text-center mb-12">
-                        <h2 className="text-4xl font-brand text-[#003B49]">Galería</h2>
-                        <p className="text-[#6B705C] mt-2">Un vistazo a nuestra alma</p>
+    <!-- Booking Modal (Simulation) -->
+    <div id="bookingModal" class="fixed inset-0 bg-black/50 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 relative animate-fade-in-up">
+            <button onclick="closeBooking()" class="absolute top-4 right-4 text-gray-400 hover:text-soul-dark">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <div class="text-center mb-6">
+                <h3 class="font-serif text-2xl font-bold text-soul-dark">Reserva tu Estancia</h3>
+                <p class="text-sm text-gray-500">Mejor precio garantizado en nuestra web</p>
+            </div>
+            
+            <form class="space-y-4" onsubmit="event.preventDefault(); alert('Redirigiendo al motor de reservas de MC Alojamientos...'); closeBooking();">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Tipo de Habitación</label>
+                    <select id="roomTypeSelect" class="w-full border-gray-300 rounded-lg shadow-sm focus:border-soul-blue focus:ring focus:ring-soul-blue/20 p-2 border">
+                        <option value="Doble">Habitación Doble</option>
+                        <option value="Duplex">Grand Dúplex (Familiar)</option>
+                        <option value="Individual">Doble Uso Individual</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Llegada</label>
+                        <input type="date" class="w-full border-gray-300 rounded-lg shadow-sm focus:border-soul-blue focus:ring focus:ring-soul-blue/20 p-2 border">
                     </div>
-                    <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {images.map((img, idx) => (
-                            <div key={idx} className="group relative h-80 overflow-hidden cursor-pointer shadow-lg">
-                                <img src={img.url} alt={img.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                                <div className="absolute inset-0 bg-[#003B49] bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
-                                    <span className="text-white font-brand text-2xl opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                                        {img.title}
-                                    </span>
-                                </div>
-                            </div>
-                        ))}
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Salida</label>
+                        <input type="date" class="w-full border-gray-300 rounded-lg shadow-sm focus:border-soul-blue focus:ring focus:ring-soul-blue/20 p-2 border">
                     </div>
                 </div>
-            );
-        };
+                <button type="submit" class="w-full bg-soul-blue text-white font-bold py-3 rounded-lg hover:bg-cyan-700 transition duration-300 shadow-lg mt-2">
+                    BUSCAR DISPONIBILIDAD
+                </button>
+            </form>
+            <div class="mt-4 pt-4 border-t border-gray-100 text-center text-xs text-gray-400">
+                <i class="fas fa-lock mr-1"></i> Pago seguro a través de MC Alojamientos
+            </div>
+        </div>
+    </div>
 
-        const ReservationPage = () => {
-            const [formStatus, setFormStatus] = useState('idle'); 
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
 
-            const handleSubmit = (e) => {
-                e.preventDefault();
-                setFormStatus('sending');
-                setTimeout(() => {
-                    setFormStatus('success');
-                }, 1500);
-            };
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
 
-            if (formStatus === 'success') {
-                return (
-                    <div className="pt-24 min-h-screen bg-[#F5F2E9] flex items-center justify-center px-4 fade-in">
-                        <div className="bg-white p-10 rounded shadow-xl text-center max-w-lg border-t-4 border-[#9C5436]">
-                            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <CalendarIcon className="text-green-600" size={32} />
-                            </div>
-                            <h2 className="text-3xl font-brand text-[#003B49] mb-4">¡Reserva Solicitada!</h2>
-                            <p className="text-gray-600 mb-6">Hemos recibido tu solicitud. Te enviaremos un correo de confirmación en breve. ¡Nos vemos en L'Almar!</p>
-                            <button 
-                                onClick={() => setFormStatus('idle')}
-                                className="text-[#9C5436] font-semibold hover:underline"
-                            >
-                                Volver al formulario
-                            </button>
-                        </div>
-                    </div>
-                );
+        // Sticky Navbar effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.add('bg-white/95');
+            } else {
+                navbar.classList.remove('shadow-md');
             }
+        });
 
-            return (
-                <div className="pt-24 pb-20 px-4 bg-[#F5F2E9] min-h-screen flex items-center justify-center fade-in">
-                    <div className="w-full max-w-5xl bg-white shadow-2xl rounded-lg overflow-hidden flex flex-col md:flex-row">
-                        <div className="md:w-1/2 bg-[#003B49] p-10 text-white flex flex-col justify-center relative overflow-hidden">
-                            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none text-white/5">
-                                <WavesIcon className="w-full h-full" />
-                            </div>
-                            <h2 className="text-4xl font-brand mb-6 z-10">Reserva tu Mesa</h2>
-                            <p className="mb-8 font-light z-10 text-gray-300">Ven a disfrutar de la brisa y el mejor arroz. Para grupos mayores de 10 personas, por favor llámanos directamente.</p>
-                            <div className="space-y-4 z-10">
-                                <div className="flex items-center space-x-4">
-                                    <PhoneIcon className="text-[#9C5436]" />
-                                    <span>+34 965 00 00 00</span>
-                                </div>
-                                <div className="flex items-center space-x-4">
-                                    <MapPinIcon className="text-[#9C5436]" />
-                                    <span>Carrer de la Mar, 24, Costa Valenciana</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="md:w-1/2 p-10">
-                            <form onSubmit={handleSubmit} className="space-y-6">
-                                <div>
-                                    <label className="block text-sm font-bold text-gray-700 mb-2 font-brand">Nombre Completo</label>
-                                    <input required type="text" className="w-full border-b-2 border-gray-200 focus:border-[#9C5436] outline-none py-2 transition-colors bg-transparent" placeholder="Joan Martorell" />
-                                </div>
-                                <div className="grid grid-cols-2 gap-6">
-                                    <div>
-                                        <label className="block text-sm font-bold text-gray-700 mb-2 font-brand">Fecha</label>
-                                        <input required type="date" className="w-full border-b-2 border-gray-200 focus:border-[#9C5436] outline-none py-2 bg-transparent" />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-bold text-gray-700 mb-2 font-brand">Hora</label>
-                                        <select className="w-full border-b-2 border-gray-200 focus:border-[#9C5436] outline-none py-2 bg-transparent">
-                                            <option>13:30</option>
-                                            <option>14:00</option>
-                                            <option>14:30</option>
-                                            <option>15:00</option>
-                                            <option>20:30</option>
-                                            <option>21:00</option>
-                                            <option>21:30</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-bold text-gray-700 mb-2 font-brand">Comensales</label>
-                                    <input required type="number" min="1" max="10" className="w-full border-b-2 border-gray-200 focus:border-[#9C5436] outline-none py-2 bg-transparent" placeholder="2" />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-bold text-gray-700 mb-2 font-brand">Teléfono</label>
-                                    <input required type="tel" className="w-full border-b-2 border-gray-200 focus:border-[#9C5436] outline-none py-2 bg-transparent" placeholder="+34 600 000 000" />
-                                </div>
-                                <button type="submit" className="w-full bg-[#003B49] text-white py-4 font-bold tracking-widest hover:bg-[#9C5436] transition-colors mt-4">
-                                    CONFIRMAR RESERVA
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            );
-        };
+        // Booking Modal Logic
+        function openBooking(roomType = null) {
+            const modal = document.getElementById('bookingModal');
+            const select = document.getElementById('roomTypeSelect');
+            
+            if(roomType) {
+                select.value = roomType;
+            }
+            
+            modal.classList.remove('hidden');
+        }
 
-        const Footer = () => (
-            <footer className="bg-[#003B49] text-[#F5F2E9] pt-16 pb-8 px-6">
-                <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-700 pb-12">
-                    <div className="text-center md:text-left">
-                        <h3 className="text-2xl font-brand mb-4">L'ALMAR</h3>
-                        <p className="font-light text-gray-400">Arroz, Brisa y Fuego.</p>
-                        <p className="font-light text-gray-400 mt-2">La esencia del Mediterráneo en tu mesa.</p>
-                    </div>
-                    <div className="text-center">
-                        <h4 className="font-bold uppercase tracking-widest mb-6 text-[#9C5436]">Horario</h4>
-                        <p className="mb-2">Lunes - Domingo</p>
-                        <p className="text-gray-400">13:00 - 16:30</p>
-                        <p className="text-gray-400">20:00 - 23:30</p>
-                    </div>
-                    <div className="text-center md:text-right">
-                        <h4 className="font-bold uppercase tracking-widest mb-6 text-[#9C5436]">Contacto</h4>
-                        <p className="mb-2">Carrer de la Mar, 24</p>
-                        <p className="mb-4">Costa Valenciana</p>
-                        <div className="flex justify-center md:justify-end space-x-4">
-                            <InstagramIcon className="cursor-pointer hover:text-[#9C5436] transition-colors" />
-                            <FacebookIcon className="cursor-pointer hover:text-[#9C5436] transition-colors" />
-                        </div>
-                    </div>
-                </div>
-                <div className="text-center mt-8 text-sm text-gray-500 font-light">
-                    &copy; 2024 Restaurante L'Almar. Todos los derechos reservados.
-                </div>
-            </footer>
-        );
+        function closeBooking() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
 
-        // --- Aplicación Principal ---
-
-        const App = () => {
-            const [page, setPage] = useState('home');
-            const [isMenuOpen, setIsMenuOpen] = useState(false);
-            const [scrolled, setScrolled] = useState(false);
-
-            useEffect(() => {
-                const handleScroll = () => {
-                    setScrolled(window.scrollY > 50);
-                };
-                window.addEventListener('scroll', handleScroll);
-                return () => window.removeEventListener('scroll', handleScroll);
-            }, []);
-
-            const navigate = (target) => {
-                setPage(target);
-                setIsMenuOpen(false);
-                window.scrollTo(0, 0);
-            };
-
-            return (
-                <div className="flex flex-col min-h-screen">
-                    {/* Header de Navegación */}
-                    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled || page !== 'home' ? 'bg-[#F5F2E9] shadow-md py-3' : 'bg-transparent py-6'}`}>
-                        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                            
-                            {/* Logo */}
-                            <div 
-                                className={`text-2xl font-bold font-brand cursor-pointer flex items-center gap-2 ${scrolled || page !== 'home' ? 'text-[#003B49]' : 'text-[#F5F2E9]'}`}
-                                onClick={() => navigate('home')}
-                            >
-                                <div className={`p-1 border-2 rounded-full ${scrolled || page !== 'home' ? 'border-[#003B49]' : 'border-[#F5F2E9]'}`}>
-                                    <div className={`w-3 h-3 rounded-full ${scrolled || page !== 'home' ? 'bg-[#9C5436]' : 'bg-[#F5F2E9]'}`}></div>
-                                </div>
-                                L'ALMAR
-                            </div>
-
-                            {/* Menu Desktop */}
-                            <div className={`hidden md:flex space-x-8 font-medium text-sm tracking-widest uppercase ${scrolled || page !== 'home' ? 'text-[#003B49]' : 'text-[#F5F2E9]'}`}>
-                                <button onClick={() => navigate('home')} className="hover:text-[#9C5436] transition-colors nav-link">Inicio</button>
-                                <button onClick={() => navigate('carta')} className="hover:text-[#9C5436] transition-colors nav-link">Carta</button>
-                                <button onClick={() => navigate('galeria')} className="hover:text-[#9C5436] transition-colors nav-link">Galería</button>
-                                <button onClick={() => navigate('reservas')} className={`px-4 py-2 border rounded transition-all ${scrolled || page !== 'home' ? 'border-[#003B49] hover:bg-[#003B49] hover:text-white' : 'border-white hover:bg-white hover:text-[#003B49]'}`}>
-                                    Reservar
-                                </button>
-                            </div>
-
-                            {/* Botón Mobile */}
-                            <div className="md:hidden">
-                                <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={scrolled || page !== 'home' ? 'text-[#003B49]' : 'text-[#F5F2E9]'}>
-                                    {isMenuOpen ? <XIcon size={28} /> : <MenuIcon size={28} />}
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Menú Mobile Desplegable */}
-                        {isMenuOpen && (
-                            <div className="absolute top-full left-0 w-full bg-[#F5F2E9] text-[#003B49] shadow-lg flex flex-col p-6 space-y-4 md:hidden border-t border-gray-200 fade-in">
-                                <button onClick={() => navigate('home')} className="text-left font-brand text-xl py-2 border-b border-gray-200">Inicio</button>
-                                <button onClick={() => navigate('carta')} className="text-left font-brand text-xl py-2 border-b border-gray-200">Carta</button>
-                                <button onClick={() => navigate('galeria')} className="text-left font-brand text-xl py-2 border-b border-gray-200">Galería</button>
-                                <button onClick={() => navigate('reservas')} className="text-left font-brand text-xl py-2 text-[#9C5436]">Reservar Mesa</button>
-                            </div>
-                        )}
-                    </nav>
-
-                    {/* Contenido Principal */}
-                    <main className="flex-grow">
-                        {page === 'home' && (
-                            <>
-                                <Hero setPage={setPage} />
-                                <AboutPreview />
-                            </>
-                        )}
-                        {page === 'carta' && <MenuPage />}
-                        {page === 'galeria' && <GalleryPage />}
-                        {page === 'reservas' && <ReservationPage />}
-                    </main>
-
-                    <Footer />
-                </div>
-            );
-        };
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+        // Close modal on outside click
+        document.getElementById('bookingModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeBooking();
+            }
+        });
     </script>
 </body>
 </html>
