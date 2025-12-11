@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitaciones | Soul Beach Hotel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'soul-sand': '#F5F0EB', 'soul-blue': '#4A8C9C', 'soul-dark': '#1F2937' },
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'], serif: ['Playfair Display', 'serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans text-gray-600 antialiased bg-white flex flex-col min-h-screen">
+
+    <!-- Navbar (Misma estructura) -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm shadow-sm" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="font-serif text-2xl font-bold text-soul-dark tracking-wider">
+                        SOUL BEACH <span class="text-soul-blue text-lg block font-sans font-light -mt-1 tracking-widest">HOTEL</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Inicio</a>
+                    <a href="habitaciones.html" class="text-soul-blue font-bold transition-colors text-sm uppercase tracking-wide">Habitaciones</a>
+                    <a href="galeria.html" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Galería</a>
+                    <a href="experiencia.html" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Experiencia</a>
+                    <button onclick="openBooking()" class="bg-soul-blue text-white px-6 py-2 rounded-full hover:bg-cyan-700 transition duration-300 text-sm font-medium uppercase tracking-wide shadow-lg flex items-center gap-2">
+                        <i class="fas fa-phone-alt text-xs"></i> Reservar
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-soul-blue focus:outline-none"><i class="fas fa-bars text-2xl"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue">Inicio</a>
+                <a href="habitaciones.html" class="block px-3 py-2 text-base font-medium text-soul-blue">Habitaciones</a>
+                <a href="galeria.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue">Galería</a>
+                <a href="experiencia.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue">Experiencia</a>
+                <button onclick="openBooking()" class="block w-full text-center mt-4 px-5 py-3 bg-soul-blue text-white font-medium rounded-lg">Reservar / Contactar</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Page -->
+    <header class="pt-32 pb-12 bg-soul-sand/30 text-center">
+        <h1 class="font-serif text-4xl font-bold text-soul-dark">Nuestras Habitaciones</h1>
+        <p class="mt-4 text-gray-500 max-w-2xl mx-auto">Espacios luminosos, suelos de madera y diseño contemporáneo.</p>
+    </header>
+
+    <section class="py-12 bg-white flex-grow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Habitación Doble -->
+                <div class="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="doble.jpeg" alt="Habitación Doble" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-serif text-2xl font-bold text-soul-dark mb-2">Habitación Doble</h3>
+                        <p class="text-sm text-gray-500 mb-4">25 m² • Vista Jardín/Mar</p>
+                        <p class="text-gray-600 mb-6 line-clamp-3">Intimidad y luz. Elige entre cama King Size (2m) o dos camas individuales.</p>
+                        <button onclick="openBooking()" class="w-full border border-soul-dark text-soul-dark py-3 hover:bg-soul-dark hover:text-white transition duration-300 uppercase text-xs font-bold tracking-widest">Consultar</button>
+                    </div>
+                </div>
+
+                <!-- Dúplex -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-soul-blue overflow-hidden">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="duplex.jpeg" alt="Dúplex Familiar" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-soul-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Familiar</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-serif text-2xl font-bold text-soul-dark mb-2">Grand Dúplex</h3>
+                        <p class="text-sm text-gray-500 mb-4">70 m² • 2 Habitaciones • Cocina</p>
+                        <p class="text-gray-600 mb-6">Cocina completa, salón comedor, dos baños y terraza. Perfecto para familias.</p>
+                        <button onclick="openBooking()" class="w-full bg-soul-blue text-white py-3 hover:bg-cyan-700 transition duration-300 uppercase text-xs font-bold tracking-widest shadow-md">Consultar</button>
+                    </div>
+                </div>
+
+                <!-- Individual -->
+                <div class="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="individual.jpeg" alt="Habitación Individual" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-serif text-2xl font-bold text-soul-dark mb-2">Habitación Individual</h3>
+                        <p class="text-sm text-gray-500 mb-4">25 m² • Confort Total</p>
+                        <p class="text-gray-600 mb-6 line-clamp-3">El mismo diseño y lujo, pensado exclusivamente para ti.</p>
+                        <button onclick="openBooking()" class="w-full border border-soul-dark text-soul-dark py-3 hover:bg-soul-dark hover:text-white transition duration-300 uppercase text-xs font-bold tracking-widest">Consultar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-soul-dark text-white pt-16 pb-8 border-t border-gray-700 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2025 Soul Beach Hotel. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="fixed inset-0 bg-black/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-xl shadow-2xl max-w-sm w-full p-8 relative text-center">
+            <button onclick="closeBooking()" class="absolute top-4 right-4 text-gray-400 hover:text-soul-dark p-2"><i class="fas fa-times text-xl"></i></button>
+            <div class="w-16 h-16 bg-soul-blue/10 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-phone-alt text-3xl text-soul-blue"></i></div>
+            <h3 class="font-serif text-2xl font-bold text-soul-dark mb-3">Reservas e Información</h3>
+            <p class="text-gray-500 mb-8 leading-relaxed">Gestionamos todas nuestras reservas directamente por teléfono.</p>
+            <a href="tel:+34966889290" class="block w-full bg-soul-blue text-white font-bold py-4 rounded-xl hover:bg-cyan-700 transition duration-300 shadow-lg mb-4 text-xl tracking-wide">966 889 290</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.toggle('hidden'); });
+        function openBooking() { document.getElementById('bookingModal').classList.remove('hidden'); }
+        function closeBooking() { document.getElementById('bookingModal').classList.add('hidden'); }
+        document.getElementById('bookingModal').addEventListener('click', function(e) { if (e.target === this) closeBooking(); });
+    </script>
+</body>
+</html>
