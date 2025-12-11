@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soul Beach Hotel | Dénia - Serenidad Costera</title>
-    <meta name="description" content="Hotel boutique en Dénia a 20m de la playa. Habitaciones de diseño y dúplex equipados. Relax, deporte y mediterráneo.">
+    <title>Soul Beach Hotel | Inicio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     
     <script>
@@ -19,7 +17,6 @@
                         'soul-sand': '#F5F0EB',
                         'soul-blue': '#4A8C9C',
                         'soul-dark': '#1F2937',
-                        'soul-wood': '#8B5E3C',
                     },
                     fontFamily: {
                         sans: ['Montserrat', 'sans-serif'],
@@ -31,35 +28,28 @@
     </script>
     <style>
         .hero-bg {
-            /* Referencia a imagen local */
             background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('portadasoul.png');
             background-size: cover;
             background-position: center;
         }
-        /* Estilos para la galería */
-        .gallery-item {
-            break-inside: avoid;
-            margin-bottom: 1.5rem;
-        }
     </style>
 </head>
-<body class="font-sans text-gray-600 antialiased bg-white">
+<body class="font-sans text-gray-600 antialiased bg-white flex flex-col min-h-screen">
 
     <!-- Navbar -->
     <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="font-serif text-2xl font-bold text-soul-dark tracking-wider">
+                    <a href="index.html" class="font-serif text-2xl font-bold text-soul-dark tracking-wider">
                         SOUL BEACH <span class="text-soul-blue text-lg block font-sans font-light -mt-1 tracking-widest">HOTEL</span>
                     </a>
                 </div>
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#inicio" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Inicio</a>
-                    <a href="#habitaciones" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Habitaciones</a>
-                    <a href="#galeria" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Galería</a>
-                    <a href="#experiencia" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Experiencia</a>
-                    <!-- Botón Reservar -->
+                    <a href="index.html" class="text-soul-blue font-bold transition-colors text-sm uppercase tracking-wide">Inicio</a>
+                    <a href="habitaciones.html" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Habitaciones</a>
+                    <a href="galeria.html" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Galería</a>
+                    <a href="experiencia.html" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Experiencia</a>
                     <button onclick="openBooking()" class="bg-soul-blue text-white px-6 py-2 rounded-full hover:bg-cyan-700 transition duration-300 text-sm font-medium uppercase tracking-wide shadow-lg flex items-center gap-2">
                         <i class="fas fa-phone-alt text-xs"></i> Reservar
                     </button>
@@ -74,17 +64,17 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#inicio" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue hover:bg-gray-50">Inicio</a>
-                <a href="#habitaciones" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue hover:bg-gray-50">Habitaciones</a>
-                <a href="#galeria" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue hover:bg-gray-50">Galería</a>
-                <a href="#experiencia" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue hover:bg-gray-50">Experiencia</a>
+                <a href="index.html" class="block px-3 py-2 text-base font-medium text-soul-blue">Inicio</a>
+                <a href="habitaciones.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue">Habitaciones</a>
+                <a href="galeria.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue">Galería</a>
+                <a href="experiencia.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue">Experiencia</a>
                 <button onclick="openBooking()" class="block w-full text-center mt-4 px-5 py-3 bg-soul-blue text-white font-medium rounded-lg">Reservar / Contactar</button>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="inicio" class="hero-bg h-screen flex items-center justify-center text-center px-4 relative">
+    <section class="hero-bg h-screen flex items-center justify-center text-center px-4 relative">
         <div class="max-w-4xl mx-auto text-white z-10 animate-fade-in-up">
             <span class="uppercase tracking-[0.3em] text-sm md:text-base mb-4 block text-gray-100">Playa de l'Almadrava, Dénia</span>
             <h1 class="font-serif text-5xl md:text-7xl font-bold mb-6 leading-tight">
@@ -94,7 +84,7 @@
                 Donde el confort contemporáneo se encuentra con la serenidad costera. A solo 20 metros del mar.
             </p>
             <div class="flex flex-col md:flex-row gap-4 justify-center">
-                <a href="#habitaciones" class="bg-white text-soul-dark px-8 py-3 rounded-none hover:bg-gray-100 transition duration-300 uppercase tracking-widest text-sm font-semibold">
+                <a href="habitaciones.html" class="bg-white text-soul-dark px-8 py-3 rounded-none hover:bg-gray-100 transition duration-300 uppercase tracking-widest text-sm font-semibold">
                     Ver Habitaciones
                 </a>
                 <button onclick="openBooking()" class="border border-white text-white px-8 py-3 rounded-none hover:bg-white/10 transition duration-300 uppercase tracking-widest text-sm font-semibold">
@@ -102,23 +92,18 @@
                 </button>
             </div>
         </div>
-        
-        <!-- Scroll Down Indicator -->
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/70">
             <i class="fas fa-chevron-down text-2xl"></i>
         </div>
     </section>
 
     <!-- Concept Section -->
-    <section class="py-20 bg-soul-sand/30">
+    <section class="py-20 bg-soul-sand/30 flex-grow">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                 <div class="relative">
                     <div class="absolute -top-4 -left-4 w-20 h-20 bg-soul-blue/10 rounded-full z-0"></div>
                     <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Interior Relax" class="relative z-10 rounded-lg shadow-xl w-full object-cover h-[500px]">
-                    <div class="absolute -bottom-6 -right-6 bg-white p-6 shadow-lg rounded-lg max-w-xs hidden md:block z-20">
-                        <p class="font-serif italic text-gray-500 text-lg">"Un espacio diseñado para no tener que salir si no quieres."</p>
-                    </div>
                 </div>
                 <div>
                     <span class="text-soul-blue font-bold tracking-widest uppercase text-sm">Nuestra Filosofía</span>
@@ -126,213 +111,32 @@
                     <p class="text-gray-600 leading-relaxed mb-6">
                         Soul Beach Hotel nace de la idea de fusionar el lujo discreto con la naturaleza. Nuestras instalaciones, recientemente renovadas, ofrecen una paleta de colores blancos y maderas que maximizan la luz natural de Dénia.
                     </p>
-                    <p class="text-gray-600 leading-relaxed mb-8">
-                        Ya sea para una escapada romántica o unas vacaciones familiares en nuestros exclusivos Dúplex, aquí encontrarás el equilibrio perfecto entre privacidad y servicio.
-                    </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-center text-gray-700">
-                            <i class="fas fa-leaf text-soul-blue w-8"></i>
-                            <span>Compromiso con la sostenibilidad</span>
-                        </li>
-                        <li class="flex items-center text-gray-700">
-                            <i class="fas fa-umbrella-beach text-soul-blue w-8"></i>
-                            <span>A 20 metros de la Playa de l'Almadrava</span>
-                        </li>
-                        <li class="flex items-center text-gray-700">
-                            <i class="fas fa-wifi text-soul-blue w-8"></i>
-                            <span>WiFi de alta velocidad gratuito</span>
-                        </li>
-                    </ul>
+                    <a href="galeria.html" class="text-soul-blue font-bold hover:text-soul-dark transition-colors border-b-2 border-soul-blue pb-1 inline-block">
+                        Descubre nuestros espacios <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Rooms Section -->
-    <section id="habitaciones" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-soul-blue font-bold tracking-widest uppercase text-sm">Alojamiento</span>
-                <h2 class="font-serif text-4xl font-bold text-soul-dark mt-2">Tu Refugio Privado</h2>
-                <p class="mt-4 text-gray-500 max-w-2xl mx-auto">Espacios luminosos, suelos de madera y diseño contemporáneo.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Habitación Doble -->
-                <div class="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="doble.jpeg" alt="Habitación Doble" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-soul-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                            Parejas
-                        </div>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="font-serif text-2xl font-bold text-soul-dark mb-2">Habitación Doble</h3>
-                        <p class="text-sm text-gray-500 mb-4">25 m² • Vista Jardín/Mar</p>
-                        <p class="text-gray-600 mb-6 line-clamp-3">
-                            Intimidad y luz. Elige entre cama King Size (2m) o dos camas individuales. Ideal para desconectar con su gran ventanal y diseño minimalista.
-                        </p>
-                        <button onclick="openBooking()" class="w-full border border-soul-dark text-soul-dark py-3 hover:bg-soul-dark hover:text-white transition duration-300 uppercase text-xs font-bold tracking-widest">
-                            Consultar
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Dúplex -->
-                <div class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-soul-blue overflow-hidden relative transform md:-translate-y-4">
-                    <div class="absolute top-0 left-0 w-full bg-soul-blue text-white text-center text-xs font-bold uppercase py-1 tracking-widest">
-                        Más Popular
-                    </div>
-                    <div class="relative h-64 overflow-hidden mt-6">
-                        <img src="duplex.jpeg" alt="Dúplex Familiar" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-soul-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                            Familiar / 4 Pax
-                        </div>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="font-serif text-2xl font-bold text-soul-dark mb-2">Grand Dúplex</h3>
-                        <p class="text-sm text-gray-500 mb-4">70 m² • 2 Habitaciones • Cocina</p>
-                        <p class="text-gray-600 mb-6">
-                            La joya de Soul Beach. Siéntete como en casa con cocina completa, salón comedor, dos baños y terraza. Perfecto para familias o estancias largas.
-                        </p>
-                        <button onclick="openBooking()" class="w-full bg-soul-blue text-white py-3 hover:bg-cyan-700 transition duration-300 uppercase text-xs font-bold tracking-widest shadow-md">
-                            Consultar
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Individual -->
-                <div class="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="individual.jpeg" alt="Habitación Individual" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-soul-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                            Solo Traveler
-                        </div>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="font-serif text-2xl font-bold text-soul-dark mb-2">Habitación Individual</h3>
-                        <p class="text-sm text-gray-500 mb-4">25 m² • Confort Total</p>
-                        <p class="text-gray-600 mb-6 line-clamp-3">
-                            El mismo diseño y lujo de nuestras habitaciones dobles, pensado exclusivamente para ti. Escritorio de trabajo y tranquilidad absoluta.
-                        </p>
-                        <button onclick="openBooking()" class="w-full border border-soul-dark text-soul-dark py-3 hover:bg-soul-dark hover:text-white transition duration-300 uppercase text-xs font-bold tracking-widest">
-                            Consultar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Gallery Section (NUEVA) -->
-    <section id="galeria" class="py-20 bg-soul-sand">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-soul-blue font-bold tracking-widest uppercase text-sm">Visuales</span>
-                <h2 class="font-serif text-4xl font-bold text-soul-dark mt-2">Galería de Momentos</h2>
-                <p class="mt-4 text-gray-500 max-w-2xl mx-auto">Descubre los rincones que harán de tu estancia un recuerdo inolvidable.</p>
-            </div>
-            
-            <!-- Grid Masonry Simulation -->
-            <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-                <!-- Uso las imágenes que ya tenemos y algunas extras temáticas -->
-                <div class="break-inside-avoid rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500">
-                    <img src="doble.jpeg" alt="Detalle Habitación" class="w-full h-auto">
-                </div>
-                
-                <div class="break-inside-avoid rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500">
-                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Detalle Relax" class="w-full h-auto">
-                </div>
-                
-                <div class="break-inside-avoid rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500">
-                     <img src="duplex.jpeg" alt="Cocina Duplex" class="w-full h-auto">
-                </div>
-                
-                <div class="break-inside-avoid rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500">
-                    <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Detalles Diseño" class="w-full h-auto">
-                </div>
-
-                <div class="break-inside-avoid rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500">
-                     <img src="individual.jpeg" alt="Habitación Individual" class="w-full h-auto">
-                </div>
-                
-                <div class="break-inside-avoid rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500">
-                    <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Piscina" class="w-full h-auto">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience/Amenities Section -->
-    <section id="experiencia" class="py-20 bg-soul-dark text-white relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style="background-image: radial-gradient(#4A8C9C 1px, transparent 1px); background-size: 20px 20px;"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
-                <div>
-                    <span class="text-soul-blue font-bold tracking-widest uppercase text-sm">Experiencias MC</span>
-                    <h2 class="font-serif text-4xl font-bold mt-2 mb-6">Más que un Hotel</h2>
-                    <p class="text-gray-300 leading-relaxed text-lg">
-                        En Soul Beach Hotel, tus vacaciones van más allá de la habitación. Aprovecha nuestra ubicación privilegiada para explorar la costa de Dénia o relájate en nuestra terraza chill-out viendo el atardecer.
-                    </p>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-white/5 p-6 rounded-lg backdrop-blur-sm border border-white/10 hover:border-soul-blue/50 transition duration-300">
-                        <i class="fas fa-water text-3xl text-soul-blue mb-4"></i>
-                        <h4 class="font-bold mb-2">Deportes Acuáticos</h4>
-                        <p class="text-sm text-gray-400">Alquiler de Kayak y Paddle Surf disponibles para huéspedes.</p>
-                    </div>
-                    <div class="bg-white/5 p-6 rounded-lg backdrop-blur-sm border border-white/10 hover:border-soul-blue/50 transition duration-300">
-                        <i class="fas fa-bicycle text-3xl text-soul-blue mb-4"></i>
-                        <h4 class="font-bold mb-2">Bicicletas</h4>
-                        <p class="text-sm text-gray-400">Descubre Dénia sobre ruedas. Rutas y alquiler en recepción.</p>
-                    </div>
-                    <div class="bg-white/5 p-6 rounded-lg backdrop-blur-sm border border-white/10 hover:border-soul-blue/50 transition duration-300">
-                        <i class="fas fa-swimming-pool text-3xl text-soul-blue mb-4"></i>
-                        <h4 class="font-bold mb-2">Piscina & Chill Out</h4>
-                        <p class="text-sm text-gray-400">Zona de relax con solárium y ambiente tranquilo.</p>
-                    </div>
-                    <div class="bg-white/5 p-6 rounded-lg backdrop-blur-sm border border-white/10 hover:border-soul-blue/50 transition duration-300">
-                        <i class="fas fa-utensils text-3xl text-soul-blue mb-4"></i>
-                        <h4 class="font-bold mb-2">Gastronomía</h4>
-                        <p class="text-sm text-gray-400">Desayunos mediterráneos y opciones locales frescas.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer (Simplificado sin formulario de contacto) -->
-    <footer class="bg-soul-dark text-white pt-16 pb-8 border-t border-gray-700">
+    <!-- Footer -->
+    <footer class="bg-soul-dark text-white pt-16 pb-8 border-t border-gray-700 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 border-b border-gray-700 pb-12">
                 <div class="col-span-1">
                     <h3 class="font-serif text-2xl font-bold mb-4">SOUL BEACH</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                        Playa de l'Almadrava, Carrer 19, 12<br>
-                        03779 Dénia, Alicante<br>
-                        España
-                    </p>
-                    <a href="https://maps.google.com/?q=Soul+Beach+Hotel+Denia" target="_blank" class="text-soul-blue hover:text-white text-sm font-bold">
-                        <i class="fas fa-map-marker-alt mr-1"></i> Ver Ubicación
-                    </a>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">Playa de l'Almadrava, Carrer 19, 12<br>03779 Dénia, Alicante</p>
                 </div>
-                
                 <div class="text-center md:text-left">
                     <h4 class="font-bold mb-4 text-soul-blue uppercase tracking-wider text-xs">Contacto Directo</h4>
                     <p class="text-2xl font-serif font-bold text-white mb-2">966 889 290</p>
                     <p class="text-sm text-gray-400">booking@mcalojamientos.com</p>
                 </div>
-
                 <div class="text-center md:text-right">
                     <h4 class="font-bold mb-4 text-soul-blue uppercase tracking-wider text-xs">Síguenos</h4>
                     <div class="flex space-x-4 justify-center md:justify-end">
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-soul-blue transition duration-300">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-soul-blue transition duration-300">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-soul-blue"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-soul-blue"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -342,69 +146,32 @@
         </div>
     </footer>
 
-    <!-- Booking Modal (NUEVO: Solo Teléfono) -->
+    <!-- Booking Modal -->
     <div id="bookingModal" class="fixed inset-0 bg-black/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm">
-        <div class="bg-white rounded-xl shadow-2xl max-w-sm w-full p-8 relative animate-fade-in-up text-center">
-            <button onclick="closeBooking()" class="absolute top-4 right-4 text-gray-400 hover:text-soul-dark p-2">
-                <i class="fas fa-times text-xl"></i>
-            </button>
-            
-            <div class="w-16 h-16 bg-soul-blue/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i class="fas fa-phone-alt text-3xl text-soul-blue"></i>
-            </div>
-
+        <div class="bg-white rounded-xl shadow-2xl max-w-sm w-full p-8 relative text-center">
+            <button onclick="closeBooking()" class="absolute top-4 right-4 text-gray-400 hover:text-soul-dark p-2"><i class="fas fa-times text-xl"></i></button>
+            <div class="w-16 h-16 bg-soul-blue/10 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-phone-alt text-3xl text-soul-blue"></i></div>
             <h3 class="font-serif text-2xl font-bold text-soul-dark mb-3">Reservas e Información</h3>
-            <p class="text-gray-500 mb-8 leading-relaxed">
-                Para garantizar la mejor atención personalizada, gestionamos todas nuestras reservas directamente por teléfono.
-            </p>
-            
-            <a href="tel:+34966889290" class="block w-full bg-soul-blue text-white font-bold py-4 rounded-xl hover:bg-cyan-700 transition duration-300 shadow-lg mb-4 text-xl tracking-wide">
-                966 889 290
-            </a>
-            
-            <p class="text-xs text-gray-400">
-                Horario de atención: 24h
-            </p>
+            <p class="text-gray-500 mb-8 leading-relaxed">Gestionamos todas nuestras reservas directamente por teléfono.</p>
+            <a href="tel:+34966889290" class="block w-full bg-soul-blue text-white font-bold py-4 rounded-xl hover:bg-cyan-700 transition duration-300 shadow-lg mb-4 text-xl tracking-wide">966 889 290</a>
+            <p class="text-xs text-gray-400">Horario de atención: 24h</p>
         </div>
     </div>
 
-    <!-- Scripts -->
     <script>
-        // Mobile Menu Toggle
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // Sticky Navbar effect
+        btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
+        
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('shadow-md');
-                navbar.classList.add('bg-white/95');
-            } else {
-                navbar.classList.remove('shadow-md');
-            }
+            if (window.scrollY > 50) { navbar.classList.add('shadow-md', 'bg-white/95'); } 
+            else { navbar.classList.remove('shadow-md'); }
         });
 
-        // Booking Modal Logic
-        function openBooking() {
-            const modal = document.getElementById('bookingModal');
-            modal.classList.remove('hidden');
-        }
-
-        function closeBooking() {
-            document.getElementById('bookingModal').classList.add('hidden');
-        }
-
-        // Close modal on outside click
-        document.getElementById('bookingModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeBooking();
-            }
-        });
+        function openBooking() { document.getElementById('bookingModal').classList.remove('hidden'); }
+        function closeBooking() { document.getElementById('bookingModal').classList.add('hidden'); }
+        document.getElementById('bookingModal').addEventListener('click', function(e) { if (e.target === this) closeBooking(); });
     </script>
 </body>
 </html>
