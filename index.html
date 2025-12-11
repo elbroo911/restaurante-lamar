@@ -31,9 +31,15 @@
     </script>
     <style>
         .hero-bg {
+            /* Referencia a imagen local */
             background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('portadasoul.png');
             background-size: cover;
             background-position: center;
+        }
+        /* Estilos para la galería */
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
         }
     </style>
 </head>
@@ -51,11 +57,12 @@
                 <div class="hidden md:flex space-x-8 items-center">
                     <a href="#inicio" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Inicio</a>
                     <a href="#habitaciones" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Habitaciones</a>
+                    <a href="#galeria" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Galería</a>
                     <a href="#experiencia" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Experiencia</a>
-                    <a href="#contacto" class="text-gray-600 hover:text-soul-blue transition-colors text-sm uppercase tracking-wide">Contacto</a>
-                    <a href="#reservar" onclick="openBooking()" class="bg-soul-blue text-white px-6 py-2 rounded-full hover:bg-cyan-700 transition duration-300 text-sm font-medium uppercase tracking-wide shadow-lg">
-                        Reservar
-                    </a>
+                    <!-- Botón Reservar -->
+                    <button onclick="openBooking()" class="bg-soul-blue text-white px-6 py-2 rounded-full hover:bg-cyan-700 transition duration-300 text-sm font-medium uppercase tracking-wide shadow-lg flex items-center gap-2">
+                        <i class="fas fa-phone-alt text-xs"></i> Reservar
+                    </button>
                 </div>
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-gray-600 hover:text-soul-blue focus:outline-none">
@@ -69,9 +76,9 @@
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#inicio" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue hover:bg-gray-50">Inicio</a>
                 <a href="#habitaciones" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue hover:bg-gray-50">Habitaciones</a>
+                <a href="#galeria" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue hover:bg-gray-50">Galería</a>
                 <a href="#experiencia" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue hover:bg-gray-50">Experiencia</a>
-                <a href="#contacto" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-soul-blue hover:bg-gray-50">Contacto</a>
-                <a href="#reservar" onclick="openBooking()" class="block w-full text-center mt-4 px-5 py-3 bg-soul-blue text-white font-medium rounded-lg">Reservar Ahora</a>
+                <button onclick="openBooking()" class="block w-full text-center mt-4 px-5 py-3 bg-soul-blue text-white font-medium rounded-lg">Reservar / Contactar</button>
             </div>
         </div>
     </nav>
@@ -90,9 +97,9 @@
                 <a href="#habitaciones" class="bg-white text-soul-dark px-8 py-3 rounded-none hover:bg-gray-100 transition duration-300 uppercase tracking-widest text-sm font-semibold">
                     Ver Habitaciones
                 </a>
-                <a href="#reservar" onclick="openBooking()" class="border border-white text-white px-8 py-3 rounded-none hover:bg-white/10 transition duration-300 uppercase tracking-widest text-sm font-semibold">
-                    Reservar Estancia
-                </a>
+                <button onclick="openBooking()" class="border border-white text-white px-8 py-3 rounded-none hover:bg-white/10 transition duration-300 uppercase tracking-widest text-sm font-semibold">
+                    Llamar para Reservar
+                </button>
             </div>
         </div>
         
@@ -154,8 +161,7 @@
                 <!-- Habitación Doble -->
                 <div class="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
                     <div class="relative h-64 overflow-hidden">
-                        <!-- Placeholder for User Image 1 -->
-                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Habitación Doble" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                        <img src="doble.jpeg" alt="Habitación Doble" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                         <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-soul-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                             Parejas
                         </div>
@@ -166,13 +172,8 @@
                         <p class="text-gray-600 mb-6 line-clamp-3">
                             Intimidad y luz. Elige entre cama King Size (2m) o dos camas individuales. Ideal para desconectar con su gran ventanal y diseño minimalista.
                         </p>
-                        <ul class="text-sm text-gray-500 space-y-2 mb-6">
-                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> Terraza Privada</li>
-                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> Minibar y Cafetera</li>
-                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> TV Pantalla Plana</li>
-                        </ul>
-                        <button onclick="openBooking('Doble')" class="w-full border border-soul-dark text-soul-dark py-3 hover:bg-soul-dark hover:text-white transition duration-300 uppercase text-xs font-bold tracking-widest">
-                            Ver Disponibilidad
+                        <button onclick="openBooking()" class="w-full border border-soul-dark text-soul-dark py-3 hover:bg-soul-dark hover:text-white transition duration-300 uppercase text-xs font-bold tracking-widest">
+                            Consultar
                         </button>
                     </div>
                 </div>
@@ -183,8 +184,7 @@
                         Más Popular
                     </div>
                     <div class="relative h-64 overflow-hidden mt-6">
-                        <!-- Placeholder for User Image 3 (Kitchen/Living) -->
-                        <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dúplex Familiar" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                        <img src="duplex.jpeg" alt="Dúplex Familiar" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                         <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-soul-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                             Familiar / 4 Pax
                         </div>
@@ -195,13 +195,8 @@
                         <p class="text-gray-600 mb-6">
                             La joya de Soul Beach. Siéntete como en casa con cocina completa, salón comedor, dos baños y terraza. Perfecto para familias o estancias largas.
                         </p>
-                        <ul class="text-sm text-gray-500 space-y-2 mb-6">
-                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> Cocina Equipada</li>
-                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> Zona de Estar amplia</li>
-                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> Microondas y Menaje</li>
-                        </ul>
-                        <button onclick="openBooking('Duplex')" class="w-full bg-soul-blue text-white py-3 hover:bg-cyan-700 transition duration-300 uppercase text-xs font-bold tracking-widest shadow-md">
-                            Reservar Dúplex
+                        <button onclick="openBooking()" class="w-full bg-soul-blue text-white py-3 hover:bg-cyan-700 transition duration-300 uppercase text-xs font-bold tracking-widest shadow-md">
+                            Consultar
                         </button>
                     </div>
                 </div>
@@ -209,27 +204,60 @@
                 <!-- Individual -->
                 <div class="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
                     <div class="relative h-64 overflow-hidden">
-                         <!-- Placeholder Generic -->
-                        <img src="https://images.unsplash.com/photo-1616486029423-aaa478965c96?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Habitación Individual" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                        <img src="individual.jpeg" alt="Habitación Individual" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                         <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-soul-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                             Solo Traveler
                         </div>
                     </div>
                     <div class="p-8">
-                        <h3 class="font-serif text-2xl font-bold text-soul-dark mb-2">Doble Uso Individual</h3>
+                        <h3 class="font-serif text-2xl font-bold text-soul-dark mb-2">Habitación Individual</h3>
                         <p class="text-sm text-gray-500 mb-4">25 m² • Confort Total</p>
                         <p class="text-gray-600 mb-6 line-clamp-3">
                             El mismo diseño y lujo de nuestras habitaciones dobles, pensado exclusivamente para ti. Escritorio de trabajo y tranquilidad absoluta.
                         </p>
-                        <ul class="text-sm text-gray-500 space-y-2 mb-6">
-                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> WiFi Alta Velocidad</li>
-                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> Cama King Size</li>
-                            <li class="flex items-center"><i class="fas fa-check text-soul-blue mr-2"></i> Parking Disponible</li>
-                        </ul>
-                        <button onclick="openBooking('Individual')" class="w-full border border-soul-dark text-soul-dark py-3 hover:bg-soul-dark hover:text-white transition duration-300 uppercase text-xs font-bold tracking-widest">
-                            Ver Disponibilidad
+                        <button onclick="openBooking()" class="w-full border border-soul-dark text-soul-dark py-3 hover:bg-soul-dark hover:text-white transition duration-300 uppercase text-xs font-bold tracking-widest">
+                            Consultar
                         </button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section (NUEVA) -->
+    <section id="galeria" class="py-20 bg-soul-sand">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-soul-blue font-bold tracking-widest uppercase text-sm">Visuales</span>
+                <h2 class="font-serif text-4xl font-bold text-soul-dark mt-2">Galería de Momentos</h2>
+                <p class="mt-4 text-gray-500 max-w-2xl mx-auto">Descubre los rincones que harán de tu estancia un recuerdo inolvidable.</p>
+            </div>
+            
+            <!-- Grid Masonry Simulation -->
+            <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                <!-- Uso las imágenes que ya tenemos y algunas extras temáticas -->
+                <div class="break-inside-avoid rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500">
+                    <img src="doble.jpeg" alt="Detalle Habitación" class="w-full h-auto">
+                </div>
+                
+                <div class="break-inside-avoid rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Detalle Relax" class="w-full h-auto">
+                </div>
+                
+                <div class="break-inside-avoid rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500">
+                     <img src="duplex.jpeg" alt="Cocina Duplex" class="w-full h-auto">
+                </div>
+                
+                <div class="break-inside-avoid rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Detalles Diseño" class="w-full h-auto">
+                </div>
+
+                <div class="break-inside-avoid rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500">
+                     <img src="individual.jpeg" alt="Habitación Individual" class="w-full h-auto">
+                </div>
+                
+                <div class="break-inside-avoid rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Piscina" class="w-full h-auto">
                 </div>
             </div>
         </div>
@@ -237,7 +265,6 @@
 
     <!-- Experience/Amenities Section -->
     <section id="experiencia" class="py-20 bg-soul-dark text-white relative overflow-hidden">
-        <!-- Background decorative pattern -->
         <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style="background-image: radial-gradient(#4A8C9C 1px, transparent 1px); background-size: 20px 20px;"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -275,169 +302,69 @@
         </div>
     </section>
 
-    <!-- Gallery Strip -->
-    <section class="grid grid-cols-2 md:grid-cols-4 gap-0">
-        <div class="h-64 overflow-hidden relative group">
-            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Detalle Hotel" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
-            <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-300"></div>
-        </div>
-        <div class="h-64 overflow-hidden relative group">
-            <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Detalle Habitación" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
-             <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-300"></div>
-        </div>
-        <div class="h-64 overflow-hidden relative group">
-            <img src="https://images.unsplash.com/photo-1468413253740-8063aa1f209a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Playa Denia" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
-             <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-300"></div>
-        </div>
-        <div class="h-64 overflow-hidden relative group">
-            <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Piscina" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
-             <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-300"></div>
-        </div>
-    </section>
-
-    <!-- Location & Contact -->
-    <section id="contacto" class="py-20 bg-soul-sand">
+    <!-- Footer (Simplificado sin formulario de contacto) -->
+    <footer class="bg-soul-dark text-white pt-16 pb-8 border-t border-gray-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row">
-                <div class="md:w-1/2 p-10 lg:p-14">
-                    <span class="text-soul-blue font-bold tracking-widest uppercase text-sm">Contacto</span>
-                    <h2 class="font-serif text-3xl font-bold text-soul-dark mt-2 mb-6">Te esperamos en Dénia</h2>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 bg-soul-blue/10 p-3 rounded-full">
-                                <i class="fas fa-map-marker-alt text-soul-blue"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-lg font-bold text-gray-800">Dirección</h4>
-                                <p class="text-gray-600">Playa de l'Almadrava, Carrer 19, 12<br>03779 Dénia, Alicante</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 bg-soul-blue/10 p-3 rounded-full">
-                                <i class="fas fa-phone-alt text-soul-blue"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-lg font-bold text-gray-800">Teléfono</h4>
-                                <p class="text-gray-600">+34 966 889 290</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 bg-soul-blue/10 p-3 rounded-full">
-                                <i class="fas fa-envelope text-soul-blue"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-lg font-bold text-gray-800">Email</h4>
-                                <p class="text-gray-600">booking@mcalojamientos.com</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-10">
-                         <a href="https://maps.google.com/?q=Soul+Beach+Hotel+Denia" target="_blank" class="inline-block text-soul-blue font-bold border-b-2 border-soul-blue pb-1 hover:text-soul-dark hover:border-soul-dark transition-colors">
-                            Ver cómo llegar <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="md:w-1/2 bg-gray-200 min-h-[400px]">
-                    <!-- Placeholder Map -->
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3110.156641662974!2d0.01912331535492211!3d38.86813297957448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x129e1adbd8b8b8b9%3A0x1c8b8b8b8b8b8b8b!2sCarrer%2019%2C%2012%2C%2003779%20D%C3%A9nia%2C%20Alicante!5e0!3m2!1ses!2ses!4v1625581234567!5m2!1ses!2ses" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-soul-dark text-white pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12 border-b border-gray-700 pb-12">
-                <div class="col-span-1 md:col-span-1">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 border-b border-gray-700 pb-12">
+                <div class="col-span-1">
                     <h3 class="font-serif text-2xl font-bold mb-4">SOUL BEACH</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Gestionado por MC Alojamientos.<br>
-                        Comprometidos con la calidad, la sostenibilidad y el confort de nuestros huéspedes.
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Playa de l'Almadrava, Carrer 19, 12<br>
+                        03779 Dénia, Alicante<br>
+                        España
                     </p>
+                    <a href="https://maps.google.com/?q=Soul+Beach+Hotel+Denia" target="_blank" class="text-soul-blue hover:text-white text-sm font-bold">
+                        <i class="fas fa-map-marker-alt mr-1"></i> Ver Ubicación
+                    </a>
                 </div>
-                <div>
-                    <h4 class="font-bold mb-4 text-soul-blue uppercase tracking-wider text-xs">Explorar</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">Inicio</a></li>
-                        <li><a href="#" class="hover:text-white transition">Habitaciones</a></li>
-                        <li><a href="#" class="hover:text-white transition">Ofertas</a></li>
-                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
-                    </ul>
+                
+                <div class="text-center md:text-left">
+                    <h4 class="font-bold mb-4 text-soul-blue uppercase tracking-wider text-xs">Contacto Directo</h4>
+                    <p class="text-2xl font-serif font-bold text-white mb-2">966 889 290</p>
+                    <p class="text-sm text-gray-400">booking@mcalojamientos.com</p>
                 </div>
-                <div>
-                    <h4 class="font-bold mb-4 text-soul-blue uppercase tracking-wider text-xs">Legal</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">Aviso Legal</a></li>
-                        <li><a href="#" class="hover:text-white transition">Política de Privacidad</a></li>
-                        <li><a href="#" class="hover:text-white transition">Política de Cookies</a></li>
-                    </ul>
-                </div>
-                <div>
+
+                <div class="text-center md:text-right">
                     <h4 class="font-bold mb-4 text-soul-blue uppercase tracking-wider text-xs">Síguenos</h4>
-                    <div class="flex space-x-4">
+                    <div class="flex space-x-4 justify-center md:justify-end">
                         <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-soul-blue transition duration-300">
                             <i class="fab fa-facebook-f"></i>
                         </a>
                         <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-soul-blue transition duration-300">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-soul-blue transition duration-300">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
                     </div>
                 </div>
             </div>
-            <div class="text-center text-gray-500 text-sm flex flex-col md:flex-row justify-between items-center">
+            <div class="text-center text-gray-500 text-sm">
                 <p>&copy; 2025 Soul Beach Hotel. Todos los derechos reservados.</p>
-                <div class="mt-4 md:mt-0">
-                    <span class="text-xs border border-gray-600 rounded px-2 py-1">Alicante, España</span>
-                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Booking Modal (Simulation) -->
-    <div id="bookingModal" class="fixed inset-0 bg-black/50 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm">
-        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 relative animate-fade-in-up">
-            <button onclick="closeBooking()" class="absolute top-4 right-4 text-gray-400 hover:text-soul-dark">
+    <!-- Booking Modal (NUEVO: Solo Teléfono) -->
+    <div id="bookingModal" class="fixed inset-0 bg-black/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-xl shadow-2xl max-w-sm w-full p-8 relative animate-fade-in-up text-center">
+            <button onclick="closeBooking()" class="absolute top-4 right-4 text-gray-400 hover:text-soul-dark p-2">
                 <i class="fas fa-times text-xl"></i>
             </button>
-            <div class="text-center mb-6">
-                <h3 class="font-serif text-2xl font-bold text-soul-dark">Reserva tu Estancia</h3>
-                <p class="text-sm text-gray-500">Mejor precio garantizado en nuestra web</p>
-            </div>
             
-            <form class="space-y-4" onsubmit="event.preventDefault(); alert('Redirigiendo al motor de reservas de MC Alojamientos...'); closeBooking();">
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Tipo de Habitación</label>
-                    <select id="roomTypeSelect" class="w-full border-gray-300 rounded-lg shadow-sm focus:border-soul-blue focus:ring focus:ring-soul-blue/20 p-2 border">
-                        <option value="Doble">Habitación Doble</option>
-                        <option value="Duplex">Grand Dúplex (Familiar)</option>
-                        <option value="Individual">Doble Uso Individual</option>
-                    </select>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Llegada</label>
-                        <input type="date" class="w-full border-gray-300 rounded-lg shadow-sm focus:border-soul-blue focus:ring focus:ring-soul-blue/20 p-2 border">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Salida</label>
-                        <input type="date" class="w-full border-gray-300 rounded-lg shadow-sm focus:border-soul-blue focus:ring focus:ring-soul-blue/20 p-2 border">
-                    </div>
-                </div>
-                <button type="submit" class="w-full bg-soul-blue text-white font-bold py-3 rounded-lg hover:bg-cyan-700 transition duration-300 shadow-lg mt-2">
-                    BUSCAR DISPONIBILIDAD
-                </button>
-            </form>
-            <div class="mt-4 pt-4 border-t border-gray-100 text-center text-xs text-gray-400">
-                <i class="fas fa-lock mr-1"></i> Pago seguro a través de MC Alojamientos
+            <div class="w-16 h-16 bg-soul-blue/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-phone-alt text-3xl text-soul-blue"></i>
             </div>
+
+            <h3 class="font-serif text-2xl font-bold text-soul-dark mb-3">Reservas e Información</h3>
+            <p class="text-gray-500 mb-8 leading-relaxed">
+                Para garantizar la mejor atención personalizada, gestionamos todas nuestras reservas directamente por teléfono.
+            </p>
+            
+            <a href="tel:+34966889290" class="block w-full bg-soul-blue text-white font-bold py-4 rounded-xl hover:bg-cyan-700 transition duration-300 shadow-lg mb-4 text-xl tracking-wide">
+                966 889 290
+            </a>
+            
+            <p class="text-xs text-gray-400">
+                Horario de atención: 24h
+            </p>
         </div>
     </div>
 
@@ -463,14 +390,8 @@
         });
 
         // Booking Modal Logic
-        function openBooking(roomType = null) {
+        function openBooking() {
             const modal = document.getElementById('bookingModal');
-            const select = document.getElementById('roomTypeSelect');
-            
-            if(roomType) {
-                select.value = roomType;
-            }
-            
             modal.classList.remove('hidden');
         }
 
